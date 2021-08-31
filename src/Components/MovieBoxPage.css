@@ -1,0 +1,48 @@
+.movie-box-page-area {
+  display: grid;
+  margin: 24px 0;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.movie-box-page-container {
+  width: 100%;
+  grid-column: 2 / 3;
+}
+
+.movie-box-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.movie-box-page-button {
+  color: #3f51b5;
+  border: 1px solid rgba(63, 81, 181, 0.5);
+  background-color: transparent;
+  line-height: 1.75;
+  padding: 5px 15px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.movie-box-page-category-area {
+  display: flex;
+  grid-column: 3 / 4;
+  flex-direction: row-reverse;
+}
+
+.movie-box-page-category-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-box-page-category-label {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.category-select {
+  border: transparent;
+  cursor: pointer;
+  font-size: 1em;
+}
