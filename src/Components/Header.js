@@ -4,10 +4,21 @@ import "./Header.css";
 
 const Header = () => {
   return (
-    <div>
-      <MovieDbLogo className="header-logo"></MovieDbLogo>
-      Header
-    </div>
+    <header className="header-container">
+      <div className="header-bar">
+        <div className="header-logo-container">
+          <MovieDbLogo></MovieDbLogo>
+        </div>
+        <div className="header-menu-container">
+          <div className="header-menu-item">HOME</div>
+          <div className="header-menu-item">FAVORITE</div>
+          <div className="header-menu-item">RATED</div>
+        </div>
+        <div>
+          <div className="header-menu-item">Login</div>
+        </div>
+      </div>
+    </header>
   );
 };
 
