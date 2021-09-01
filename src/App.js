@@ -1,12 +1,12 @@
 import "./App.css";
 import Header from "./Components/Header";
-import MovieBox from "./Components/MovieBox";
+import MovieBoxRoute from "./Components/MovieBoxRoute";
 
 function App() {
   return (
     <div className="App">
       <Header></Header>
-      <MovieBox></MovieBox>
+      <MovieBoxRoute></MovieBoxRoute>
     </div>
   );
 }

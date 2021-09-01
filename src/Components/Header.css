@@ -34,3 +34,8 @@
   font-size: 1.5em;
   cursor: pointer;
 }
+
+.header-menu-link {
+  text-decoration: none;
+  color: white;
+}

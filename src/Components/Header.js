@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ReactComponent as MovieDbLogo } from "../media/moviedb_logo.svg";
 import "./Header.css";
 
@@ -10,12 +11,28 @@ const Header = () => {
           <MovieDbLogo></MovieDbLogo>
         </div>
         <div className="header-menu-container">
-          <div className="header-menu-item">HOME</div>
-          <div className="header-menu-item">FAVORITE</div>
-          <div className="header-menu-item">RATED</div>
+          <div className="header-menu-item">
+            <Link to="/home" className="header-menu-link" exact>
+              HOME
+            </Link>
+          </div>
+          <div className="header-menu-item">
+            <Link to="/favorite" className="header-menu-link" exact>
+              FAVORITE
+            </Link>
+          </div>
+          <div className="header-menu-item">
+            <Link to="/rated" className="header-menu-link" exact>
+              RATED
+            </Link>
+          </div>
         </div>
         <div>
-          <div className="header-menu-item">Login</div>
+          <div className="header-menu-item">
+            <Link to="/login" className="header-menu-link" exact>
+              Login
+            </Link>
+          </div>
         </div>
       </div>
     </header>
