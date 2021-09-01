@@ -1,3 +1,9 @@
 .movie-box-container {
   padding: 0 40px;
 }
+
+.movie-box-display-area {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: repeat(4, 1fr);
+}
