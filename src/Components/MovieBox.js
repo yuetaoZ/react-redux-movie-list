@@ -1,5 +1,5 @@
 import React from "react";
-import "./MovieBox.css";
+import "../App.css";
 import MovieBoxPage from "./MovieBoxPage";
 import MovieCard from "./MovieCard";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import "./MovieBoxPage.css";
+import "../App.css";
 
 const MovieBoxPage = () => {
   return (

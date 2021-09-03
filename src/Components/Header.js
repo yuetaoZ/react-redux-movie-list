@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as MovieDbLogo } from "../media/moviedb_logo.svg";
-import "./Header.css";
+import "../App.css";
 
 const Header = () => {
   return (

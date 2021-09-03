@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import "./Login.css";
+import "../App.css";
 
 const validationSchema = yup.object({
   username: yup

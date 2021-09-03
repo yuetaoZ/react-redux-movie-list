@@ -1,3 +1,143 @@
 .App {
   text-align: center;
 }
+
+.header-container {
+  color: #fff;
+  background-color: #3f51b5;
+  width: 100%;
+  display: flex;
+  z-index: 1100;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  flex-direction: column;
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%),
+    0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+}
+
+.header-bar {
+  min-height: 64px;
+  padding: 0 24px;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.header-logo-container {
+  width: 100px;
+  padding: 8px;
+}
+
+.header-menu-container {
+  flex-grow: 1;
+  display: flex;
+}
+
+.header-menu-item {
+  margin: 0 20px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.header-menu-link {
+  text-decoration: none;
+  color: white;
+}
+
+.movie-box-container {
+  padding: 0 40px;
+}
+
+.movie-box-display-area {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.movie-box-page-area {
+  display: grid;
+  margin: 24px 0;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.movie-box-page-container {
+  width: 100%;
+  grid-column: 2 / 3;
+}
+
+.movie-box-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.movie-box-page-button {
+  color: #3f51b5;
+  border: 1px solid rgba(63, 81, 181, 0.5);
+  background-color: transparent;
+  line-height: 1.75;
+  padding: 5px 15px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.movie-box-page-category-area {
+  display: flex;
+  grid-column: 3 / 4;
+  flex-direction: row-reverse;
+}
+
+.movie-box-page-category-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-box-page-category-label {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.category-select {
+  border: transparent;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.movie-card {
+  overflow: hidden;
+  box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%),
+    0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+  border-radius: 4px;
+}
+
+.movie-card-media {
+  height: 500px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.movie-card-title {
+  width: 100%;
+  height: 2em;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-card-action-container {
+  width: 100%;
+  height: 2em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-container {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
