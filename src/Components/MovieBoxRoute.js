@@ -1,11 +1,12 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import MovieBox from "./MovieBox";
+import Login from "./Login";
 
 const MovieBoxRoute = () => {
   return (
     <Switch>
-      <Route path="/home">
+      <Route path="/" exact>
         <div>
           Run default fetch
           <MovieBox></MovieBox>
@@ -24,7 +25,7 @@ const MovieBoxRoute = () => {
         </div>
       </Route>
       <Route path="/login">
-        <div>Render Login Component</div>
+        <Login></Login>
       </Route>
     </Switch>
   );

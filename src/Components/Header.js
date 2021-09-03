@@ -12,24 +12,24 @@ const Header = () => {
         </div>
         <div className="header-menu-container">
           <div className="header-menu-item">
-            <Link to="/home" className="header-menu-link" exact>
+            <Link to="/" className="header-menu-link">
               HOME
             </Link>
           </div>
           <div className="header-menu-item">
-            <Link to="/favorite" className="header-menu-link" exact>
+            <Link to="/favorite" className="header-menu-link">
               FAVORITE
             </Link>
           </div>
           <div className="header-menu-item">
-            <Link to="/rated" className="header-menu-link" exact>
+            <Link to="/rated" className="header-menu-link">
               RATED
             </Link>
           </div>
         </div>
         <div>
           <div className="header-menu-item">
-            <Link to="/login" className="header-menu-link" exact>
+            <Link to="/login" className="header-menu-link">
               Login
             </Link>
           </div>
