@@ -1,14 +1,22 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../App.css";
 
-const MovieBoxPage = (props) => {
+const MovieBoxPage = () => {
+  const { movielistInfo } = useSelector((state) => {
+    return state.movieModule;
+  });
+
+  const dispatch = useDispatch();
+
   return (
     <div className="movie-box-page-area">
       <div className="movie-box-page-container">
         <div className="movie-box-page">
           <button className="movie-box-page-button">PREV</button>
           <p>
-            {props.page} / {props.total_pages}
+            {movielistInfo && movielistInfo.page} /{" "}
+            {movielistInfo && movielistInfo.total_pages}
           </p>
           <button className="movie-box-page-button">NEXT</button>
         </div>
