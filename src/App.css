@@ -104,6 +104,12 @@
   font-size: 1em;
 }
 
+.movie-card-action-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .login-container {
   margin: 20px;
   display: flex;

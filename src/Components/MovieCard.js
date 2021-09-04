@@ -1,4 +1,5 @@
 import React from "react";
+import "../App.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -33,7 +34,7 @@ const ImgMediaCard = (props) => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      <CardActions className="movie-card-action-container">
         <Button size="small" color="primary">
           Star
         </Button>
