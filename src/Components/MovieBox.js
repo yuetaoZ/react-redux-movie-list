@@ -3,16 +3,26 @@ import "../App.css";
 import MovieBoxPage from "./MovieBoxPage";
 import MovieCard from "./MovieCard";
 
-const MovieBox = () => {
+import { useDispatch, useSelector } from "react-redux";
+
+const MovieBox = (props) => {
+  const { movielistInfo, loading } = useSelector((state) => {
+    return state.movieModule;
+  });
+
+  const dispatch = useDispatch();
+
   return (
     <div className="movie-box-container">
-      <MovieBoxPage></MovieBoxPage>
+      <MovieBoxPage
+        page={movielistInfo.page}
+        total_pages={movielistInfo.total_pages}
+      ></MovieBoxPage>
       <div className="movie-box-display-area">
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
+        {console.log("movielistInfo from redux: ", movielistInfo)}
+        {movielistInfo.results.map((movie) => {
+          return <MovieCard movie={movie}></MovieCard>;
+        })}
       </div>
     </div>
   );

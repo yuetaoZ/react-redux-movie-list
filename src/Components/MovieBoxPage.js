@@ -1,13 +1,15 @@
 import React from "react";
 import "../App.css";
 
-const MovieBoxPage = () => {
+const MovieBoxPage = (props) => {
   return (
     <div className="movie-box-page-area">
       <div className="movie-box-page-container">
         <div className="movie-box-page">
           <button className="movie-box-page-button">PREV</button>
-          <p>currPage/Pages</p>
+          <p>
+            {props.page} / {props.total_pages}
+          </p>
           <button className="movie-box-page-button">NEXT</button>
         </div>
       </div>

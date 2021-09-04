@@ -1,26 +1,31 @@
 import "./App.css";
+import React, { useEffect } from "react";
 import Header from "./Components/Header";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import MovieBox from "./Components/MovieBox";
 import Login from "./Components/Login";
+import { loadPopularMoviesAsyncAction } from "./redux/actions";
 
 function App() {
-  const movies = useSelector((state) => {
-    return state.movieModule.movies;
+  const { movielistInfo, loading } = useSelector((state) => {
+    return state.movieModule;
   });
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(loadPopularMoviesAsyncAction());
+  }, []);
+
   return (
     <div className="App">
       <Header></Header>
-
+      {loading && <div>loading</div>}
       <Switch>
         <Route path="/" exact>
           <div>
-            Run default fetch
-            <MovieBox></MovieBox>
+            <MovieBox movielistInfo={movielistInfo}></MovieBox>
           </div>
         </Route>
         <Route path="/favorite">
