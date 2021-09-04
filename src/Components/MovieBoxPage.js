@@ -13,12 +13,9 @@ const MovieBoxPage = () => {
       </div>
       <div className="movie-box-page-category-area">
         <div className="movie-box-page-category-container">
-          <lable
-            for="category-select"
-            className="movie-box-page-category-label"
-          >
+          <label htmlFor="category" className="movie-box-page-category-label">
             Category
-          </lable>
+          </label>
           <select className="category-select" name="category">
             <option value="NOW_PLAYING">Now Playing</option>
             <option value="POPULAR">Popular</option>
