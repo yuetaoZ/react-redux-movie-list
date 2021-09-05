@@ -1,15 +1,15 @@
 import "./App.css";
 import React, { useEffect } from "react";
 import Header from "./Components/Header";
-import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Route, Switch, Redirect } from "react-router-dom";
 import MovieBox from "./Components/MovieBox";
 import Login from "./Components/Login";
 import { loadPopularMoviesAsyncAction } from "./redux/actions";
 import store from "./redux/store";
 
 function App() {
-  const { loading } = useSelector((state) => {
+  const { logged_in } = useSelector((state) => {
     return state.movieModule;
   });
 
@@ -31,7 +31,7 @@ function App() {
           <MovieBox></MovieBox>
         </Route>
         <Route path="/login">
-          <Login></Login>
+          {logged_in ? <Redirect to="/" /> : <Login />}
         </Route>
       </Switch>
     </div>

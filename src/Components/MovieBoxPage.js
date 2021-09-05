@@ -9,7 +9,7 @@ import {
 import "../App.css";
 
 const MovieBoxPage = () => {
-  const { movielistInfo } = useSelector((state) => {
+  const { page, totalPages } = useSelector((state) => {
     return state.movieModule;
   });
 
@@ -19,8 +19,8 @@ const MovieBoxPage = () => {
 
   const onPageChange = (e) => {
     let btnId = e.target.id;
-    let currPage = Number(movielistInfo.page);
-    let totalPage = Number(movielistInfo.total_pages);
+    let currPage = Number(page);
+    let totalPage = Number(totalPages);
     if (btnId === "prevBtn") {
       if (currPage <= 1) {
         return;
@@ -92,8 +92,7 @@ const MovieBoxPage = () => {
             PREV
           </button>
           <p>
-            {movielistInfo && movielistInfo.page} /{" "}
-            {movielistInfo && movielistInfo.total_pages}
+            {page} / {totalPages}
           </p>
           <button
             className="movie-box-page-button"

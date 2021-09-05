@@ -5,7 +5,7 @@ import MovieCard from "./MovieCard";
 import { useDispatch, useSelector } from "react-redux";
 
 const MovieBox = () => {
-  const { movielistInfo } = useSelector((state) => {
+  const { movielist } = useSelector((state) => {
     return state.movieModule;
   });
 
@@ -15,8 +15,8 @@ const MovieBox = () => {
     <div className="movie-box-container">
       <MovieBoxPage></MovieBoxPage>
       <div className="movie-box-display-area">
-        {movielistInfo &&
-          movielistInfo.results.map((movie) => {
+        {movielist &&
+          movielist.map((movie) => {
             return <MovieCard key={movie.id} movie={movie}></MovieCard>;
           })}
       </div>

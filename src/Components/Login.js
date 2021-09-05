@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import "../App.css";
+import { setLoginStatus, loginAsyncAction } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const validationSchema = yup.object({
   username: yup
     .string("Enter your username")
-    .max(15, "User name should be less than 15 characters")
+    .max(40, "User name should be less than 40 characters")
     .required("Username is required"),
   password: yup
     .string("Enter your password")
@@ -17,6 +19,16 @@ const validationSchema = yup.object({
 });
 
 const WithMaterialUI = () => {
+  const { login_failed } = useSelector((state) => {
+    return state.movieModule;
+  });
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setLoginStatus());
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -25,12 +37,14 @@ const WithMaterialUI = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+      dispatch(loginAsyncAction(values.username, values.password));
     },
   });
 
   return (
     <div className="login-container">
       <h1>Login</h1>
+      {login_failed && <p style={{ color: "red" }}>Failed to login</p>}
       <form onSubmit={formik.handleSubmit}>
         <TextField
           fullWidth
