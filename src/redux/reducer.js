@@ -24,7 +24,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        logged_in: false,
       };
     }
     case Actions.SET_LOGIN_STATUS: {
@@ -46,6 +45,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        logged_in: false,
         login_failed: true,
       };
     }
@@ -53,6 +53,9 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         logged_in: false,
+        favoriteList: [],
+        ratedList: [],
+        userData: {},
       };
     }
     case Actions.LOAD_MOVIELIST_SUCCESS: {
@@ -62,6 +65,20 @@ const reducer = (state = initialState, action) => {
         page: action.payload.page,
         totalPages: action.payload.total_pages,
         movielist: action.payload.results,
+        loading: false,
+      };
+    }
+    case Actions.LOAD_FAVORITE_MOVIELIST_SUCCESS: {
+      return {
+        ...state,
+        favoriteList: action.payload.results,
+        loading: false,
+      };
+    }
+    case Actions.LOAD_RATED_MOVIELIST_SUCCESS: {
+      return {
+        ...state,
+        ratedList: action.payload.results,
         loading: false,
       };
     }

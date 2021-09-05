@@ -9,14 +9,18 @@ import MovieBoxPage from "./Components/MovieBoxPage";
 import {
   loginSucceed,
   loadPopularMoviesAsyncAction,
+  loadFavoriteMoviesAsyncAction,
+  loadRatedMoviesAsyncAction,
   loginFailed,
 } from "./redux/actions";
 import store from "./redux/store";
 
 function App() {
-  const { logged_in } = useSelector((state) => {
-    return state.movieModule;
-  });
+  const { logged_in, movielist, favoriteList, ratedList } = useSelector(
+    (state) => {
+      return state.movieModule;
+    }
+  );
 
   useEffect(() => {
     const userDataload = JSON.parse(localStorage.getItem("user"));
@@ -24,6 +28,18 @@ function App() {
       store.dispatch(loginFailed());
     } else {
       store.dispatch(loginSucceed(userDataload));
+      store.dispatch(
+        loadFavoriteMoviesAsyncAction(
+          userDataload.accountId,
+          userDataload.sessionId
+        )
+      );
+      store.dispatch(
+        loadRatedMoviesAsyncAction(
+          userDataload.accountId,
+          userDataload.sessionId
+        )
+      );
     }
     store.dispatch(loadPopularMoviesAsyncAction(1));
   }, []);
@@ -34,15 +50,15 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <MovieBoxPage></MovieBoxPage>
-          <MovieBox></MovieBox>
+          <MovieBox movielist={movielist}></MovieBox>
         </Route>
         <Route path="/favorite">
           <br />
-          <MovieBox></MovieBox>
+          <MovieBox movielist={favoriteList}></MovieBox>
         </Route>
         <Route path="/rated">
           <br />
-          <MovieBox></MovieBox>
+          <MovieBox movielist={ratedList}></MovieBox>
         </Route>
         <Route path="/login">
           {logged_in ? <Redirect to="/" /> : <Login />}

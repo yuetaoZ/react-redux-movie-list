@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ReactComponent as MovieDbLogo } from "../media/moviedb_logo.svg";
 import "../App.css";
-import { logout } from "../redux/actions";
+import { logout, loadPopularMoviesAsyncAction } from "../redux/actions";
 
 const Header = () => {
   const { logged_in, userData } = useSelector((state) => {
@@ -43,6 +43,10 @@ const Header = () => {
     }
   };
 
+  const displayDefaultPage = () => {
+    dispatch(loadPopularMoviesAsyncAction(1));
+  };
+
   return (
     <header className="header-container">
       <div className="header-bar">
@@ -51,7 +55,11 @@ const Header = () => {
         </div>
         <div className="header-menu-container">
           <div className="header-menu-item">
-            <Link to="/" className="header-menu-link">
+            <Link
+              to="/"
+              className="header-menu-link"
+              onClick={displayDefaultPage}
+            >
               HOME
             </Link>
           </div>

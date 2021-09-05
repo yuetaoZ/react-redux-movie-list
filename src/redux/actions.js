@@ -3,6 +3,9 @@ import axios from "axios";
 export const LOAD_START = "LOAD_START";
 export const LOAD_FAILED = "LOAD_FAILED";
 export const LOAD_MOVIELIST_SUCCESS = "LOAD_MOVIELIST_SUCCESS";
+export const LOAD_FAVORITE_MOVIELIST_SUCCESS =
+  "LOAD_FAVORITE_MOVIELIST_SUCCESS";
+export const LOAD_RATED_MOVIELIST_SUCCESS = "LOAD_RATED_MOVIELIST_SUCCESS";
 export const LOGIN_SUCCEED = "LOGIN_SUCCEED";
 export const LOGIN_FAILED = "LOGIN_FAILED";
 export const SET_LOGIN_STATUS = "SET_LOGIN_STATUS";
@@ -40,6 +43,20 @@ export const loginSucceed = (userData) => {
 export const loadMovielistSuccess = (movielist) => {
   return {
     type: LOAD_MOVIELIST_SUCCESS,
+    payload: movielist,
+  };
+};
+
+export const loadFavoriteMovielistSuccess = (movielist) => {
+  return {
+    type: LOAD_FAVORITE_MOVIELIST_SUCCESS,
+    payload: movielist,
+  };
+};
+
+export const loadRatedMovielistSuccess = (movielist) => {
+  return {
+    type: LOAD_RATED_MOVIELIST_SUCCESS,
     payload: movielist,
   };
 };
@@ -94,6 +111,36 @@ export const loadUpcomingMoviesAsyncAction = (page) => {
         `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=${page}`
       )
       .then((resp) => dispatch(loadMovielistSuccess(resp.data)))
+      .catch(() => {
+        dispatch(loadingFailed());
+      });
+  };
+};
+
+export const loadFavoriteMoviesAsyncAction = (account_id, session_id) => {
+  console.log("account_id", account_id);
+  return (dispatch) => {
+    dispatch(loadingStart());
+    axios
+      .get(
+        `https://api.themoviedb.org/3/account/${account_id}/favorite/movies?api_key=${API_KEY}&language=en-US&session_id=${session_id}&sort_by=created_at.asc&page=1`
+      )
+      .then((resp) => dispatch(loadFavoriteMovielistSuccess(resp.data)))
+      .catch(() => {
+        dispatch(loadingFailed());
+      });
+  };
+};
+
+export const loadRatedMoviesAsyncAction = (account_id, session_id) => {
+  console.log("account_id", account_id);
+  return (dispatch) => {
+    dispatch(loadingStart());
+    axios
+      .get(
+        `https://api.themoviedb.org/3/account/${account_id}/rated/movies?api_key=${API_KEY}&language=en-US&session_id=${session_id}&sort_by=created_at.asc&page=1`
+      )
+      .then((resp) => dispatch(loadRatedMovielistSuccess(resp.data)))
       .catch(() => {
         dispatch(loadingFailed());
       });
