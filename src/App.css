@@ -105,9 +105,19 @@
 }
 
 .movie-card-action-container {
-  width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.movie-card-icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.movie-card-icon-container-favorite {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .login-container {
