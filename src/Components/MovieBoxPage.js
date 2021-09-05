@@ -19,7 +19,6 @@ const MovieBoxPage = () => {
 
   const onPageChange = (e) => {
     let btnId = e.target.id;
-    console.log(`btnId`, btnId);
     let currPage = Number(movielistInfo.page);
     let totalPage = Number(movielistInfo.total_pages);
     if (btnId === "prevBtn") {
@@ -35,14 +34,9 @@ const MovieBoxPage = () => {
         currPage += 1;
       }
     }
-    console.log(`currPage`, currPage);
     switch (select) {
       case "NOW_PLAYING": {
         dispatch(loadNowPlayingMoviesAsyncAction(currPage));
-        return;
-      }
-      case "POPULAR": {
-        dispatch(loadPopularMoviesAsyncAction(currPage));
         return;
       }
       case "TOP_RATED": {
@@ -54,6 +48,7 @@ const MovieBoxPage = () => {
         return;
       }
       default: {
+        dispatch(loadPopularMoviesAsyncAction(currPage));
         return;
       }
     }
