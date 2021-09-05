@@ -1,5 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  loadPopularMoviesAsyncAction,
+  loadNowPlayingMoviesAsyncAction,
+  loadTopRatedMoviesAsyncAction,
+  loadUpcomingMoviesAsyncAction,
+} from "../redux/actions";
 import "../App.css";
 
 const MovieBoxPage = () => {
@@ -8,6 +14,34 @@ const MovieBoxPage = () => {
   });
 
   const dispatch = useDispatch();
+
+  const [select, setSelect] = useState("");
+
+  const onChange = (e) => {
+    const tag = e.target.value;
+    setSelect(tag);
+    switch (tag) {
+      case "NOW_PLAYING": {
+        dispatch(loadNowPlayingMoviesAsyncAction(1));
+        return;
+      }
+      case "POPULAR": {
+        dispatch(loadPopularMoviesAsyncAction(1));
+        return;
+      }
+      case "TOP_RATED": {
+        dispatch(loadTopRatedMoviesAsyncAction(1));
+        return;
+      }
+      case "UPCOMING": {
+        dispatch(loadUpcomingMoviesAsyncAction(1));
+        return;
+      }
+      default: {
+        return;
+      }
+    }
+  };
 
   return (
     <div className="movie-box-page-area">
@@ -26,7 +60,12 @@ const MovieBoxPage = () => {
           <label htmlFor="category" className="movie-box-page-category-label">
             Category
           </label>
-          <select className="category-select" name="category">
+          <select
+            className="category-select"
+            name="category"
+            value={select ? select : "POPULAR"}
+            onChange={onChange}
+          >
             <option value="NOW_PLAYING">Now Playing</option>
             <option value="POPULAR">Popular</option>
             <option value="TOP_RATED">Top Rated</option>

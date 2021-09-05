@@ -15,7 +15,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadPopularMoviesAsyncAction());
+    dispatch(loadPopularMoviesAsyncAction(1));
   }, []);
 
   return (
