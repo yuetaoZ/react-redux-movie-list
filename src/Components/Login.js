@@ -36,7 +36,6 @@ const WithMaterialUI = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
       dispatch(loginAsyncAction(values.username, values.password));
     },
   });

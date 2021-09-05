@@ -27,6 +27,22 @@ const Header = () => {
     setShowLogOutBtn(false);
   };
 
+  const displayLogoutBtn = (shouldShow) => {
+    if (shouldShow) {
+      return (
+        <button onClick={logOut} autoFocus={true} onBlur={hideLogOut}>
+          logout
+        </button>
+      );
+    } else {
+      return (
+        <div tabIndex="0" onClick={showLogOut}>
+          {userData && userData.username}
+        </div>
+      );
+    }
+  };
+
   return (
     <header className="header-container">
       <div className="header-bar">
@@ -53,16 +69,7 @@ const Header = () => {
         <div>
           <div className="header-menu-item">
             {logged_in ? (
-              <div>
-                {showLogOutBtn && (
-                  <button onClick={logOut} autoFocus={true} onBlur={hideLogOut}>
-                    logout
-                  </button>
-                )}
-                <div tabIndex="0" onClick={showLogOut}>
-                  {!showLogOutBtn && userData.username}
-                </div>
-              </div>
+              <div>{displayLogoutBtn(showLogOutBtn)}</div>
             ) : (
               <Link to="/login" className="header-menu-link">
                 Login

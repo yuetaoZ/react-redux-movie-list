@@ -2,6 +2,8 @@ import * as Actions from "./actions";
 
 const initialState = {
   movielist: [],
+  favoriteList: [],
+  ratedList: [],
   page: "",
   totalPages: "",
   loading: false,
@@ -22,6 +24,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        logged_in: false,
       };
     }
     case Actions.SET_LOGIN_STATUS: {
