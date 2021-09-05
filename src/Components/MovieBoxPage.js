@@ -17,7 +17,49 @@ const MovieBoxPage = () => {
 
   const [select, setSelect] = useState("");
 
-  const onChange = (e) => {
+  const onPageChange = (e) => {
+    let btnId = e.target.id;
+    console.log(`btnId`, btnId);
+    let currPage = Number(movielistInfo.page);
+    let totalPage = Number(movielistInfo.total_pages);
+    if (btnId === "prevBtn") {
+      if (currPage <= 1) {
+        return;
+      } else {
+        currPage -= 1;
+      }
+    } else if (btnId === "nextBtn") {
+      if (currPage >= totalPage) {
+        return;
+      } else {
+        currPage += 1;
+      }
+    }
+    console.log(`currPage`, currPage);
+    switch (select) {
+      case "NOW_PLAYING": {
+        dispatch(loadNowPlayingMoviesAsyncAction(currPage));
+        return;
+      }
+      case "POPULAR": {
+        dispatch(loadPopularMoviesAsyncAction(currPage));
+        return;
+      }
+      case "TOP_RATED": {
+        dispatch(loadTopRatedMoviesAsyncAction(currPage));
+        return;
+      }
+      case "UPCOMING": {
+        dispatch(loadUpcomingMoviesAsyncAction(currPage));
+        return;
+      }
+      default: {
+        return;
+      }
+    }
+  };
+
+  const onCategoryChange = (e) => {
     const tag = e.target.value;
     setSelect(tag);
     switch (tag) {
@@ -47,12 +89,24 @@ const MovieBoxPage = () => {
     <div className="movie-box-page-area">
       <div className="movie-box-page-container">
         <div className="movie-box-page">
-          <button className="movie-box-page-button">PREV</button>
+          <button
+            className="movie-box-page-button"
+            id="prevBtn"
+            onClick={onPageChange}
+          >
+            PREV
+          </button>
           <p>
             {movielistInfo && movielistInfo.page} /{" "}
             {movielistInfo && movielistInfo.total_pages}
           </p>
-          <button className="movie-box-page-button">NEXT</button>
+          <button
+            className="movie-box-page-button"
+            id="nextBtn"
+            onClick={onPageChange}
+          >
+            NEXT
+          </button>
         </div>
       </div>
       <div className="movie-box-page-category-area">
@@ -64,7 +118,7 @@ const MovieBoxPage = () => {
             className="category-select"
             name="category"
             value={select ? select : "POPULAR"}
-            onChange={onChange}
+            onChange={onCategoryChange}
           >
             <option value="NOW_PLAYING">Now Playing</option>
             <option value="POPULAR">Popular</option>
