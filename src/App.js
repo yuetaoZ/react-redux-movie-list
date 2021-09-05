@@ -50,15 +50,24 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <MovieBoxPage></MovieBoxPage>
-          <MovieBox movielist={movielist}></MovieBox>
+          <MovieBox
+            movielist={movielist}
+            favoriteList={favoriteList}
+          ></MovieBox>
         </Route>
         <Route path="/favorite">
           <br />
-          <MovieBox movielist={favoriteList}></MovieBox>
+          <MovieBox
+            movielist={favoriteList}
+            favoriteList={favoriteList}
+          ></MovieBox>
         </Route>
         <Route path="/rated">
           <br />
-          <MovieBox movielist={ratedList}></MovieBox>
+          <MovieBox
+            movielist={ratedList}
+            favoriteList={favoriteList}
+          ></MovieBox>
         </Route>
         <Route path="/login">
           {logged_in ? <Redirect to="/" /> : <Login />}

@@ -18,6 +18,8 @@ const useStyles = makeStyles({
 const ImgMediaCard = (props) => {
   const classes = useStyles();
 
+  console.log(`props.movie`, props.movie);
+
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -42,7 +44,10 @@ const ImgMediaCard = (props) => {
           {props.movie.vote_average}
         </div>
         <div className="movie-card-icon-container-favorite">
-          <Icon size="small" style={{ color: "grey" }}>
+          <Icon
+            size="small"
+            style={{ color: props.inFavorite ? "red" : "grey" }}
+          >
             favorite
           </Icon>
         </div>
