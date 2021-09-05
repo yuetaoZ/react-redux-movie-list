@@ -6,39 +6,29 @@ import { Route, Switch } from "react-router-dom";
 import MovieBox from "./Components/MovieBox";
 import Login from "./Components/Login";
 import { loadPopularMoviesAsyncAction } from "./redux/actions";
+import store from "./redux/store";
 
 function App() {
-  const { movielistInfo, loading } = useSelector((state) => {
+  const { loading } = useSelector((state) => {
     return state.movieModule;
   });
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(loadPopularMoviesAsyncAction(1));
+    store.dispatch(loadPopularMoviesAsyncAction(1));
   }, []);
 
   return (
     <div className="App">
       <Header></Header>
-      {loading && <div>loading</div>}
       <Switch>
         <Route path="/" exact>
-          <div>
-            <MovieBox movielistInfo={movielistInfo}></MovieBox>
-          </div>
+          <MovieBox></MovieBox>
         </Route>
         <Route path="/favorite">
-          <div>
-            Run favorite fetch
-            <MovieBox></MovieBox>
-          </div>
+          <MovieBox></MovieBox>
         </Route>
         <Route path="/rated">
-          <div>
-            Run rated fetch
-            <MovieBox></MovieBox>
-          </div>
+          <MovieBox></MovieBox>
         </Route>
         <Route path="/login">
           <Login></Login>
