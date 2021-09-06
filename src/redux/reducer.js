@@ -82,6 +82,13 @@ const reducer = (state = initialState, action) => {
         loading: false,
       };
     }
+    case Actions.LOAD_MOVIE_DETAILS_SUCCEED: {
+      return {
+        ...state,
+        movieDetails: action.payload,
+        loading: false,
+      };
+    }
     default:
       return state;
   }

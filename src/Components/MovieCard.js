@@ -9,7 +9,11 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
-import { toggleFavoriteAsyncAction } from "../redux/actions";
+import {
+  toggleFavoriteAsyncAction,
+  loadMovieDetailsSucceed,
+} from "../redux/actions";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -19,6 +23,8 @@ const useStyles = makeStyles({
 
 const ImgMediaCard = (props) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const classes = useStyles();
 
   const { userData } = useSelector((state) => {
     return state.movieModule;
@@ -29,8 +35,6 @@ const ImgMediaCard = (props) => {
   useEffect(() => {
     setFavorite(props.inFavorite);
   }, [props.inFavorite]);
-
-  const classes = useStyles();
 
   const toggleFavorite = (id) => {
     toggleFavoriteAsync(favorite, id);
@@ -48,9 +52,15 @@ const ImgMediaCard = (props) => {
     );
   };
 
+  const routeChange = (movie) => {
+    dispatch(loadMovieDetailsSucceed(movie));
+    let path = `/movies/${movie.id}`;
+    history.push(path);
+  };
+
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea onClick={() => routeChange(props.movie)}>
         <CardMedia
           component="img"
           alt="Movie poster"

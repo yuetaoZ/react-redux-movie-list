@@ -10,6 +10,7 @@ export const LOGIN_SUCCEED = "LOGIN_SUCCEED";
 export const LOGIN_FAILED = "LOGIN_FAILED";
 export const SET_LOGIN_STATUS = "SET_LOGIN_STATUS";
 export const LOG_OUT = "LOG_OUT";
+export const LOAD_MOVIE_DETAILS_SUCCEED = "LOAD_MOVIE_DETAILS_SUCCEED";
 
 const API_KEY = "9b2c8894f1dac9b8e9b2f47ce9f2cb67";
 
@@ -136,7 +137,9 @@ export const loadRatedMoviesAsyncAction = (account_id, session_id) => {
       .get(
         `https://api.themoviedb.org/3/account/${account_id}/rated/movies?api_key=${API_KEY}&language=en-US&session_id=${session_id}&sort_by=created_at.asc&page=1`
       )
-      .then((resp) => dispatch(loadRatedMovielistSuccess(resp.data)))
+      .then((resp) => {
+        dispatch(loadRatedMovielistSuccess(resp.data));
+      })
       .catch(() => {
         dispatch(loadingFailed());
       });
@@ -206,6 +209,29 @@ export const toggleFavoriteAsyncAction = (account_id, session_id, body) => {
         `https://api.themoviedb.org/3/account/${account_id}/favorite?api_key=${API_KEY}&session_id=${session_id}`,
         body
       )
+      .catch(() => {
+        dispatch(loadingFailed());
+      });
+  };
+};
+
+export const loadMovieDetailsSucceed = (data) => {
+  return {
+    type: LOAD_MOVIE_DETAILS_SUCCEED,
+    payload: data,
+  };
+};
+
+export const loadMovieDetailsAsyncAction = (movieId) => {
+  return (dispatch) => {
+    dispatch(loadingStart());
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`
+      )
+      .then((resp) => {
+        dispatch(loadMovieDetailsSucceed(resp.data));
+      })
       .catch(() => {
         dispatch(loadingFailed());
       });

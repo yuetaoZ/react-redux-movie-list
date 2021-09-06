@@ -7,13 +7,13 @@ import MovieBox from "./Components/MovieBox";
 import Login from "./Components/Login";
 import MovieBoxPage from "./Components/MovieBoxPage";
 import {
-  loginSucceed,
   loadPopularMoviesAsyncAction,
   loadFavoriteMoviesAsyncAction,
   loadRatedMoviesAsyncAction,
   loginFailed,
 } from "./redux/actions";
 import store from "./redux/store";
+import MovieDetails from "./Components/MovieDetails";
 
 function App() {
   const { logged_in, movielist, favoriteList, ratedList } = useSelector(
@@ -27,7 +27,6 @@ function App() {
     if (userDataload === null || userDataload === {}) {
       store.dispatch(loginFailed());
     } else {
-      store.dispatch(loginSucceed(userDataload));
       store.dispatch(
         loadFavoriteMoviesAsyncAction(
           userDataload.accountId,
@@ -71,6 +70,9 @@ function App() {
         </Route>
         <Route path="/login">
           {logged_in ? <Redirect to="/" /> : <Login />}
+        </Route>
+        <Route exact path="/movies/:id">
+          <MovieDetails></MovieDetails>
         </Route>
       </Switch>
     </div>
