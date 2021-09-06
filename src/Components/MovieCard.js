@@ -28,7 +28,7 @@ const ImgMediaCard = (props) => {
 
   useEffect(() => {
     setFavorite(props.inFavorite);
-  }, []);
+  }, [props.inFavorite]);
 
   const classes = useStyles();
 

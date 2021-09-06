@@ -162,20 +162,17 @@ export const loginAsyncAction = (username, password) => {
         `https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=${API_KEY}`,
         { username, password, request_token }
       );
-      console.log(`request_token`, request_token);
       const session_id = await axios
         .post(
           `https://api.themoviedb.org/3/authentication/session/new?api_key=${API_KEY}`,
           { request_token }
         )
         .then((resp) => resp.data.session_id);
-      console.log("session_id", session_id);
       const data = await axios
         .get(
           `https://api.themoviedb.org/3/account?api_key=${API_KEY}&session_id=${session_id}`
         )
         .then((resp) => resp.data);
-      console.log("account", data);
       const userData = {
         username,
         accountId: data.id,
@@ -184,7 +181,8 @@ export const loginAsyncAction = (username, password) => {
       };
       localStorage.setItem("user", JSON.stringify(userData));
       dispatch(loginSucceed(userData));
-      console.log("userData", userData);
+      dispatch(loadFavoriteMoviesAsyncAction());
+      dispatch(loadRatedMoviesAsyncAction());
     } catch (e) {
       console.log("something wrong");
       dispatch(loginFailed());

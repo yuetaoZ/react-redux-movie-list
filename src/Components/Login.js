@@ -27,7 +27,7 @@ const WithMaterialUI = () => {
 
   useEffect(() => {
     dispatch(setLoginStatus());
-  }, []);
+  }, [dispatch]);
 
   const formik = useFormik({
     initialValues: {
