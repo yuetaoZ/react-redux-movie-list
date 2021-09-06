@@ -11,8 +11,6 @@ export const LOGIN_FAILED = "LOGIN_FAILED";
 export const SET_LOGIN_STATUS = "SET_LOGIN_STATUS";
 export const LOG_OUT = "LOG_OUT";
 
-export const TOGGLE_FAVORITE = "TOGGLE_FAVORITE";
-
 const API_KEY = "9b2c8894f1dac9b8e9b2f47ce9f2cb67";
 
 export const loadingStart = () => {
@@ -118,7 +116,6 @@ export const loadUpcomingMoviesAsyncAction = (page) => {
 };
 
 export const loadFavoriteMoviesAsyncAction = (account_id, session_id) => {
-  console.log("account_id", account_id);
   return (dispatch) => {
     dispatch(loadingStart());
     axios
@@ -133,7 +130,6 @@ export const loadFavoriteMoviesAsyncAction = (account_id, session_id) => {
 };
 
 export const loadRatedMoviesAsyncAction = (account_id, session_id) => {
-  console.log("account_id", account_id);
   return (dispatch) => {
     dispatch(loadingStart());
     axios
@@ -201,5 +197,19 @@ export const logout = () => {
   localStorage.removeItem("user");
   return {
     type: LOG_OUT,
+  };
+};
+
+export const toggleFavoriteAsyncAction = (account_id, session_id, body) => {
+  return (dispatch) => {
+    dispatch(loadingStart());
+    axios
+      .post(
+        `https://api.themoviedb.org/3/account/${account_id}/favorite?api_key=${API_KEY}&session_id=${session_id}`,
+        body
+      )
+      .catch(() => {
+        dispatch(loadingFailed());
+      });
   };
 };

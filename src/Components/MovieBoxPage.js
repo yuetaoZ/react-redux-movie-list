@@ -87,7 +87,7 @@ const MovieBoxPage = () => {
           <button
             className="movie-box-page-button"
             id="prevBtn"
-            onClick={onPageChange}
+            onClick={(e) => onPageChange(e)}
           >
             PREV
           </button>
@@ -97,7 +97,7 @@ const MovieBoxPage = () => {
           <button
             className="movie-box-page-button"
             id="nextBtn"
-            onClick={onPageChange}
+            onClick={(e) => onPageChange(e)}
           >
             NEXT
           </button>
@@ -112,7 +112,7 @@ const MovieBoxPage = () => {
             className="category-select"
             name="category"
             value={select ? select : "POPULAR"}
-            onChange={onCategoryChange}
+            onChange={(e) => onCategoryChange(e)}
           >
             <option value="NOW_PLAYING">Now Playing</option>
             <option value="POPULAR">Popular</option>
