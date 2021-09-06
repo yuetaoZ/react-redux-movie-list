@@ -9,7 +9,7 @@ import Icon from "@material-ui/core/Icon";
 import { Rating } from "@material-ui/lab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import "./MovieDetails.css";
+import "../App.css";
 
 const MovieDetails = () => {
   const { movieDetails, ratedList, userData } = useSelector((state) => {
