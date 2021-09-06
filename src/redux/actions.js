@@ -237,3 +237,17 @@ export const loadMovieDetailsAsyncAction = (movieId) => {
       });
   };
 };
+
+export const rateMovieAsyncAction = (movie_id, session_id, body) => {
+  return (dispatch) => {
+    dispatch(loadingStart());
+    axios
+      .post(
+        `https://api.themoviedb.org/3/movie/${movie_id}/rating?api_key=${API_KEY}&session_id=${session_id}`,
+        body
+      )
+      .catch(() => {
+        dispatch(loadingFailed());
+      });
+  };
+};

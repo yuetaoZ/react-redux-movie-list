@@ -60,3 +60,9 @@
   display: flex;
   align-items: center;
 }
+
+.movie-logo-container {
+  height: 50px;
+  width: 50px;
+  display: flex;
+}

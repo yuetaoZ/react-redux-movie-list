@@ -11,6 +11,7 @@ import {
   loadFavoriteMoviesAsyncAction,
   loadRatedMoviesAsyncAction,
   loginFailed,
+  loginSucceed,
 } from "./redux/actions";
 import store from "./redux/store";
 import MovieDetails from "./Components/MovieDetails";
@@ -27,6 +28,7 @@ function App() {
     if (userDataload === null || userDataload === {}) {
       store.dispatch(loginFailed());
     } else {
+      store.dispatch(loginSucceed(userDataload));
       store.dispatch(
         loadFavoriteMoviesAsyncAction(
           userDataload.accountId,
