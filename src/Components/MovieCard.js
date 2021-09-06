@@ -26,7 +26,7 @@ const ImgMediaCard = (props) => {
   const history = useHistory();
   const classes = useStyles();
 
-  const { userData } = useSelector((state) => {
+  const { userData, logged_in } = useSelector((state) => {
     return state.movieModule;
   });
 
@@ -37,6 +37,7 @@ const ImgMediaCard = (props) => {
   }, [props.inFavorite]);
 
   const toggleFavorite = (id) => {
+    if (!logged_in) return;
     toggleFavoriteAsync(favorite, id);
     setFavorite(!favorite);
   };
